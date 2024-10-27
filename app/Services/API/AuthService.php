@@ -4,6 +4,7 @@ namespace App\Services\API;
 
 use App\Http\Requests\API\UserLoginRequest;
 use App\Http\Requests\API\UserRegisterRequest;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
@@ -19,6 +20,8 @@ class AuthService
             'password' => bcrypt($request->password),
         ]);
 
+        $role = Role::where('name', 'user')->first();
+        $user->roles()->attach($role);
         return [
             'success' => true,
             'message' => 'User created successfully',
