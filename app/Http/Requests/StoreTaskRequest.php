@@ -33,6 +33,11 @@ class StoreTaskRequest extends FormRequest
                 'nullable',
                 'string',
             ],
+            'image' => [
+                'bail',
+                'nullable',
+                'image',
+            ],
         ];
     }
 }

@@ -33,6 +33,15 @@ class UpdateTaskRequest extends FormRequest
                 'nullable',
                 'string',
             ],
+            'image' => [
+                'bail',
+                'nullable',
+                'image',
+            ],
+            'delete_image' => [
+                'bail',
+                'nullable',
+            ],
         ];
     }
 }

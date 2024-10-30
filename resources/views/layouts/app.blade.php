@@ -72,6 +72,24 @@
             text-align: justify;
         }
 
+        input[type=text],
+        input[type=password],
+        textarea {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            padding: 0.5em;
+            outline: none;
+            border: 1px solid;
+            border-radius: 5px;
+            transition: all 0.1s;
+            margin-bottom: 1em;
+        }
+
+        textarea {
+            height: auto;
+        }
+
         button {
             padding: 0.5em 1em;
             background: darkblue;
@@ -94,6 +112,12 @@
             display: block;
             width: 100%;
             max-width: 300px;
+        }
+
+        img {
+            display: inline-block;
+            max-width: 100%;
+            height: auto;
         }
     </style>
 </head>

@@ -5,71 +5,42 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
+use App\Services\TaskService;
 
 class TaskController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(TaskService $taskService)
     {
-        return view('tasks.index', [
-            'tasks' => Task::all(),
-        ]);
+        return $taskService->index();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('tasks.add');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreTaskRequest $request)
+    public function store(StoreTaskRequest $request, TaskService $taskService)
     {
-        $task = Task::create($request->validated());
-        return redirect()->route('tasks.show', $task);
+        return $taskService->store($request);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Task $task)
+    public function show(Task $task, TaskService $taskService)
     {
-        return view('tasks.show', [
-            'task' => $task,
-        ]);
+        return $taskService->show($task);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Task $task)
+    public function edit(Task $task, TaskService $taskService)
     {
-        return view('tasks.edit', [
-            'task' => $task,
-        ]);
+        return $taskService->edit($task);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateTaskRequest $request, Task $task)
+    public function update(UpdateTaskRequest $request, Task $task, TaskService $taskService)
     {
-        $task->update($request->validated());
-        return redirect()->route('tasks.show', $task);
+        return $taskService->update($task, $request);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Task $task)
+    public function destroy(Task $task, TaskService $taskService)
     {
-        $task->delete();
-        return redirect()->route('tasks.index');
+        return $taskService->destroy($task);
     }
 }
